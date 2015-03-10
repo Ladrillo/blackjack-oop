@@ -1,17 +1,20 @@
+# encoding: UTF-8
+require 'pry'
+
 class Game
   attr_accessor :state, :brain, :player, :dealer
 
-  def initialize
-    @state = State.new
+  def initialize    
     @brain = Brain.new
     @player = Player.new
     @dealer = Dealer.new
   end
 
   def play_game
-    greeting
-    player_name
     loop do
+      @state = State.new
+      greeting
+      player_name    
       player_bank      
       player.place_bet
       dealer.deal_first
@@ -30,6 +33,18 @@ class Game
   end
 
   private
+
+  def logo
+  '
+   ______ _            _    _            _    
+   | ___ \ |          | |  (_)          | |   
+   | |_/ / | __ _  ___| | ___  __ _  ___| | __
+   | ___ \ |/ _` |/ __| |/ / |/ _` |/ __| |/ /
+   | |_/ / | (_| | (__|   <| | (_| | (__|   < 
+   \____/|_|\__,_|\___|_|\_\ |\__,_|\___|_|\_\
+                          _/ |Tealeaf rocks!!!                
+                         |__/ '
+  end
 
   def greeting
     system 'clear'
@@ -58,26 +73,58 @@ class Game
   end
 end
 
-
+                                                    
 class Player
   attr_accessor :name
 
-  def initialize
+  def initialize                                                                                                                                          
     @name = ''
   end
 end
 
-
-def initial_state_of_game
-  system 'clear'
-  puts logo
-  puts "\n" * 3 + " Welcome to the table!"
-  puts " Blackjack pays 3 to 2."
-  puts " Dealer must draw on 16 and stand on all 17's."
-  puts "\n"
-  initial_state = blank_state
-  player_name(initial_state)
-  player_bank(initial_state)
-  initial_state[:deck] = lambda { deck }
-  initial_state
+class Dealer
 end
+
+class Brain
+end
+
+class State
+  attr_accessor
+    :deck, 
+    :player_name, 
+    :dealer_bank, 
+    :player_bank,
+    :player_bank_initial,
+    :bet,
+    :player_points,
+    :dealer_points,
+    :player_hand,
+    :dealer_hand
+
+  def initialize(
+    deck = [], 
+    player_name = '', 
+    dealer_bank = 50000, 
+    player_bank = 0,
+    player_bank_initial = 0,
+    bet = 0,
+    player_points = 0,
+    dealer_points = 0,
+    player_hand = [],
+    dealer_hand = [])
+
+    @deck = deck
+    @player_name = player_name
+    @dealer_bank = dealer_bank
+    @player_bank = player_bank
+    @player_bank_initial = player_bank_initial
+    @bet = bet
+    @player_points = player_points
+    @dealer_points = dealer_points
+    @player_hand = player_hand
+    @dealer_hand = dealer_hand
+  end
+end
+
+game = Game.new.play_game         
+binding.pry
