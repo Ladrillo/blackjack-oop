@@ -37,7 +37,7 @@ class Game
           display_table(false)
           non_direct_win
         end
-        
+
         break unless bet_again?
         break unless state.player_bank > 0
         break unless state.dealer_bank > 0
@@ -58,7 +58,7 @@ class Game
    | ___ \ |/ _` |/ __| |/ / |/ _` |/ __| |/ /
    | |_/ / | (_| | (__|   <| | (_| | (__|   < 
    \____/|_|\__,_|\___|_|\_\ |\__,_|\___|_|\_\
-                          _/ |Tealeaf rocks!!!                
+                          _/ |Fullstack A. Rocks!!!                
                          |__/ '
   end
 
@@ -193,7 +193,7 @@ class Game
   def player_hits_or_stands
     loop do
       begin
-        puts "\n Hit or Stand? (h/s)" 
+        puts "\n Hit or Stay? (h/s)" 
         option = gets.chomp.downcase
       end while option != 'h' && option != 's'
       hit_player if option == 'h'
@@ -223,8 +223,8 @@ class Game
   def display_goodbye_message
     if state.dealer_bank == 0
       puts "\n" * 3 + " You broke the bank! Congratulations!!!"
-      puts " Except they're not letting you leave with all that dough..."
-      puts " The story probably ends with you buried somewhere in the desert!"
+      puts " Except there's no way they're letting you leave with all that dough..."
+      puts " The story probably ends with your corpse buried somewhere in the desert!"
     elsif state.player_bank == 0
       puts "\n" * 3 + " You don't have any money left!"
       puts " Think of all the nice things"
